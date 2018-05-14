@@ -5,23 +5,18 @@ import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-
 
 public class Main extends Application implements EventHandler {
 
     Button button = new Button();
     TextField textField = new TextField();
     HBox hbox = new HBox();
+    private Generator generator = new Generator();
 
     @Override
     public void start(Stage primaryStage){
@@ -48,7 +43,12 @@ public class Main extends Application implements EventHandler {
     @Override
     public void handle(Event event) {
         if(event.getSource() == button){
-            System.out.println("Good to see you!");
+            String text = "";
+            generator.readFile();
+            //generator.printElements(generator.readFile());
+            text = generator.printRandomName(generator.readFile());
+            System.out.println("TEST:" + text);
+            textField.setText(text);
         }
     }
 
